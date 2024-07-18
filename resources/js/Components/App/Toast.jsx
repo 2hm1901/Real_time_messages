@@ -7,7 +7,7 @@ export default function Toast({message}){
     const { on } = useEventBus();
 
     useEffect(() => {
-        on('toast.show', (message) => {
+        on("toast.show", (message) => {
             const uuid = uuidv4();
 
             setToasts((oldToasts) => [...oldToasts, {message, uuid}]);

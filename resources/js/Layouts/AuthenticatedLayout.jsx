@@ -186,7 +186,7 @@ export default function Authenticated({ header, children }) {
             {children}
         </div>
         <Toast />
-        <NewMessageNotification/>
+        <NewMessageNotification />
         </>
     );
 }

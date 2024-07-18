@@ -12,7 +12,7 @@ export default function NewMessageNotification({message}){
         on("newMessageNotification", ({message, user, group_id}) => {
             const uuid = uuidv4();
 
-            setToasts((oldToasts) => [...oldToasts, {message, uuid, user, group_id}]);
+            setToasts((oldToasts) => [...oldToasts, {message, uuid, user, group_id},]);
 
             setTimeout(() => {
                 setToasts((oldToasts) => 
@@ -39,7 +39,7 @@ export default function NewMessageNotification({message}){
                     </Link>
                     
                 </div> 
-            ))}           
+            ))};           
         </div>
     );
 }
