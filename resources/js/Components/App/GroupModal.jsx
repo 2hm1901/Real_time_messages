@@ -40,6 +40,7 @@ export default function GroupModal({show = false, onClose = () => {} }) {
         post(route("group.store"), {
             onSuccess: () => {
                 emit("toast.show", `Group "${data.name}" was created`);
+                closeModal();
             }
         });
     };
@@ -90,7 +91,7 @@ export default function GroupModal({show = false, onClose = () => {} }) {
                 </div>
                 <div className="mt-4">
                     <InputLabel htmlFor="description" value="Description" />
-                    <TextInput 
+                    <TextAreaInput 
                         id="description"
                         rows="3"
                         className="mt-1 block w-full"
