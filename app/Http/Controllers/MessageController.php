@@ -120,6 +120,7 @@ class MessageController extends Controller
         }
         $message->delete();
 
+        $lastMessage = null;
         if ($group) {
             //repopulate $group with latest database data
             $group = Group::find($group->id);
