@@ -2,8 +2,11 @@ import { LockClosedIcon, LockOpenIcon, ShieldCheckIcon, UserIcon, EllipsisVertic
 import {Menu, Transition, MenuItems, MenuButton} from "@headlessui/react";
 import axios from "axios";
 import { Fragment } from "react";
+import { useEventBus } from "@/EventBus";
 
 export default function UserOptionsDropdown({conversation}){
+    const {emit} = useEventBus();
+
     const changeUserRole = () => {
         if (!conversation.is_user){
             return;
@@ -12,6 +15,7 @@ export default function UserOptionsDropdown({conversation}){
         axios
             .post(route("user.changeRole", conversation.id))
             .then((res) => {
+                emit("toast.show", res.data.message)
                 console.log(res.data);
             })
             .catch((err) => {
@@ -27,6 +31,7 @@ export default function UserOptionsDropdown({conversation}){
         axios
             .post(route("user.blockUnblock", conversation.id))
             .then((res) => {
+                emit("toast.show", res.data.message)
                 console.log(res.data);
             })
             .catch((err) => {
@@ -51,7 +56,7 @@ export default function UserOptionsDropdown({conversation}){
                     leave-from-class="transform scale-100 opacity-100"
                     leave-to-class="transform scale-95 opacity-0"
                 >
-                    <MenuItems class="absolute right-0 mt-2 w-48 rounded-md bg-gray-800 shadow-lg z-50">
+                    <MenuItems className="absolute right-0 mt-2 w-48 rounded-md bg-gray-800 shadow-lg z-50">
                         <div className="px-1 py-1">
                             <MenuItems>
                                 {({ active }) => (
